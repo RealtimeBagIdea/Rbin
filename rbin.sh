@@ -18,6 +18,7 @@
 #Light Gray   0;37     White         1;37
 #----------------------------------------
 
+VERSION="1.0"
 
 #COLOR VAR
 C_DIR='\033[1;34m'
@@ -208,6 +209,12 @@ SetFont()
         sudo echo $2 >> /var/.rbinfont
     else
         sudo echo $2 > /var/.rbinfont
+    fi
+
+    if [ "$2" == "1" ]; then
+        echo -e "${C_OK}Enable ${C_FILE}Font Awesome"
+    else
+        echo -e "${C_FAIL}Disable ${C_FILE}Font Awesome"
     fi
 }
 
@@ -534,6 +541,8 @@ if [ -f "/var/.rbinrc" ]; then
             echo -e "${C_DIR}Total size is ${C_FILE}$(du -hs $ROOT | cut -f1)"
         elif [ "$1" == "-f" ]; then
             SetFont $1 $2
+        elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
+            echo "[Recycle Bin] version: " $VERSION
         else
             RemoveFile $@
         fi
