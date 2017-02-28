@@ -18,7 +18,7 @@
 #Light Gray   0;37     White         1;37
 #----------------------------------------
 
-VERSION="1.0"
+VERSION="1.1"
 
 #COLOR VAR
 C_DIR='\033[1;34m'
