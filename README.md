@@ -20,20 +20,24 @@
 If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
 * First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```)
   - ```sudo rm init realtime``` realtime is your username
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/init.png)
 
 * Remove file to Bin
   - pattern: ```rm {file1} {file2} {file3}```
   - ex1. ```rm file1.txt file2.txt``` remove by select manual
   - ex2. ```rm * .*``` remove all file and directory (include hidden file)
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/rm.png)
 
 * Delete file from hardisk
   - pattern: ```rm -d {file1} {file2} {file3}```
   - ex1. ```rm -d file1.txt file2.txt``` delete by select manual
   - ex2. ```rm -d * .*``` delete all file and directory (include hidden file)
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/delete.png)
   
 * List file in recycle bin
   - pattern: ```rm -l``` list short of file
   - pattern: ```rm -L``` list file with time
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/list.png)
   
 * Restore file from recycle bin
   - you view see index by ```rm -l```
@@ -41,11 +45,13 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - ex1. ```rm -r 0,1,2 ~/foo``` restore files to ```~/foo```
   - ex2. ```rm -r . ~/foo``` restore all files to ```~/foo```
   - ex2. ```rm -r 0,1``` restore files to current working directory
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/restore.png)
   
 * Clean Bin (Delete file from bin)
   - pattern: ```rm -c {Index}```
   - ex1. ```rm -c 0,1,2``` delete manual files from bin
   - ex2. ```rm -c``` delete all files from bin
+  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/clean.png)
 
 * Get bin size
   - pattern: ```rm -s```
