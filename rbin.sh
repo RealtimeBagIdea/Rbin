@@ -28,11 +28,14 @@
 #  1.2  | - use "rm -u" or "rm -user" to show current user                                                  |
 #-------+---------------------------------------------------------------------------------------------------#
 #       | - No Init require when first start                                                                |
-#  2.0  | - Change config file from /var/.rbinrc to ~/.local/rbin/.rbinrc                                   |
+#  2.0  | - Change config file from /var/config to ~/.local/rbin/config                                     |
 #       | - Remove "init" argument                                                                          |
-#-----------------------------------------------------------------------------------------------------------#
+#-------+---------------------------------------------------------------------------------------------------#
+#  2.1  | - Change config file from "~/.local/rbin/.rbinrc" to "~/.local/rbin/config"                       |
+#-------+---------------------------------------------------------------------------------------------------#
 
 VERSION="2.0"
+
 
 #COLOR VAR
 C_DIR='\033[1;34m'
@@ -47,13 +50,14 @@ CURRENTUSER=$(who | cut -d' ' -f1)
 
 #Variable
 ROOT="/home/$CURRENTUSER/.local/.rbin"
-CONFIG_FILE="/home/$CURRENTUSER/.config/rbin/.rbinrc"
+CONFIG_FILE="/home/$CURRENTUSER/.config/rbin/config"
 CONFIG_DIR="/home/$CURRENTUSER/.config/rbin/"
 
 #Config KEY
 CONF_K_FONT="ENABLE_FONT"
 
 ITEM_LIST=()
+
 
 # Decleare Function
 End()
@@ -62,14 +66,15 @@ End()
     exit 1
 }
 
+End
+
 CheckInit()
 {
-    #Check if no .rbinrc, and generate it
+    #Check if no config, and generate it
     if [ ! -f $CONFIG_FILE ]; then
         if [ ! -d $CONFIG_DIR ]; then
             mkdir -p $CONFIG_DIR
         fi
-        
         echo "#Enable Font Awesome" >> $CONFIG_FILE
         echo "$CONF_K_FONT=1" >> $CONFIG_FILE
     fi
@@ -90,6 +95,7 @@ CheckInit()
         I_BIN="${C_DIR}\xef\x87\xb8${C_NC}"
         I_EMTYPE="${C_FAIL}\xef\x87\xb8${C_NC}"
         I_SP="\xef\x83\x9a"
+
     else
         I_DIR="${C_DIR}Dir${C_NC}"
         I_FILE="${C_FILE}File${C_NC}"
