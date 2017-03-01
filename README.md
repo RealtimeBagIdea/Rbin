@@ -44,7 +44,7 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - pattern: ```rm -r {Index} {TargetPath}```
   - ex1. ```rm -r 0,1,2 ~/foo``` restore files to ```~/foo```
   - ex2. ```rm -r . ~/foo``` restore all files to ```~/foo```
-  - ex3. ```rm -r 0,1``` restore files to current working directory
+  - ex3. ```rm -r 0,1``` restore files to current directory
   - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/restore.png)
   
 * Clean Bin (Delete file from bin)
