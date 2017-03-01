@@ -1,5 +1,7 @@
 ##Recycle Bin for Linux (Terminal Mode) such as i3wm
 ##Update Log
+* v1.2
+  - use ```rm -u or rm -user``` to show current user's bin
 * v1.1
   - Show Detail when disable/enable font awesome by run ```sudo rm -f {value}```
 
