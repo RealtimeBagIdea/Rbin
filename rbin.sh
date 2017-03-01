@@ -18,7 +18,21 @@
 #Light Gray   0;37     White         1;37
 #----------------------------------------
 
-VERSION="1.2"
+
+#-------------------------------- Update -------------------------------------------------------------------#
+#-------+---------------------------------------------------------------------------------------------------#
+#  Ver  |   Detail                                                                                          |
+#-------+---------------------------------------------------------------------------------------------------#
+#  1.1  | - Show Detail when disable/enable font awesome by run sudo rm -f {value}                          |
+#-------+---------------------------------------------------------------------------------------------------#
+#  1.2  | - use "rm -u" or "rm -user" to show current user                                                  |
+#-------+---------------------------------------------------------------------------------------------------#
+#       | - No Init require when first start                                                                |
+#  2.0  | - Change config file from /var/.rbinrc to ~/.local/rbin/.rbinrc                                   |
+#       | - Remove "init" argument                                                                          |
+#-----------------------------------------------------------------------------------------------------------#
+
+VERSION="2.0"
 
 #COLOR VAR
 C_DIR='\033[1;34m'
@@ -28,29 +42,43 @@ C_NC='\033[0m'
 C_OK='\033[1;32m'
 C_FAIL='\033[1;31m'
 
+#Get Logined User
+CURRENTUSER=$(who | cut -d' ' -f1)
 
 #Variable
+ROOT="/home/$CURRENTUSER/.local/.rbin"
+CONFIG_FILE="/home/$CURRENTUSER/.config/rbin/.rbinrc"
+CONFIG_DIR="/home/$CURRENTUSER/.config/rbin/"
+
+#Config KEY
+CONF_K_FONT="ENABLE_FONT"
+
 ITEM_LIST=()
 
+# Decleare Function
 End()
 {
     echo ""
     exit 1
 }
 
-# Decleare Function
-CheckFont()
+CheckInit()
 {
-    if [ ! -f "/var/.rbinfont" ]; then
-        if [ $EUID -eq 0 ]; then
-            echo "1" > /var/.rbinfont
-        else
-            return  
+    #Check if no .rbinrc, and generate it
+    if [ ! -f $CONFIG_FILE ]; then
+        if [ ! -d $CONFIG_DIR ]; then
+            mkdir -p $CONFIG_DIR
         fi
+        
+        echo "#Enable Font Awesome" >> $CONFIG_FILE
+        echo "$CONF_K_FONT=1" >> $CONFIG_FILE
     fi
 
-    F_ENABLE=$(cat /var/.rbinfont)
-    if [ $F_ENABLE == "1" ]; then
+    #Read Config
+    source $CONFIG_FILE
+
+    #Font Enable
+    if [ "$ENABLE_FONT" == "1" ]; then
         I_DIR="${C_DIR}\xef\x81\xbc${C_NC}"
         I_FILE="${C_FILE}\xef\x85\x9c${C_NC}"
         I_DIR2="${C_DIR}\xef\x81\xbc${C_NC}"
@@ -77,35 +105,6 @@ CheckFont()
     fi
 }
 
-CheckInit() 
-{
-    if [ "$1" == "init" ] && [ "$2" != "" ]; then
-        #Check For root
-        if [ $EUID -ne 0 ]; then
-            echo -e "${I_FAIL} ${C_FAIL}This command must run as root"
-            End
-        fi
-
-        if [ -d "/home/$2" ]; then
-            echo "$2" > /var/.rbinrc 
-
-            #Init for font
-            CheckFont
-
-            if [ $? -eq 0 ]; then
-                echo -e "${I_OK} ${C_OK}Init Completed" 
-                exit 0
-            else
-                echo -e "${I_FAIL} ${C_FAIL}Init Failed" 
-                End
-            fi
-        else
-            echo -e "${I_FAIL} ${C_FAIL}No User Found" 
-            End
-        fi
-    fi
-}
-
 ArrayExist() {
     local seeking=$1; shift
     local in=1
@@ -118,6 +117,7 @@ ArrayExist() {
     return $in
 }
 
+#Get all file in bin by order: hidden folder -> hidden file -> folder -> file
 GetAllFile()
 {
     ITEM_LIST=()
@@ -168,9 +168,6 @@ GetAllFile()
 
 ShowHelp()
 {
-    echo -e "        ${C_OK}Init: sudo rbin.sh init {USER}${C_NC}"
-    echo -e "          Ex. sudo rbin.sh init myname"
-    echo -e ""
     echo -e " ${C_OK}Enable Font: sudo rbin.sh -f {VALUE}${C_NC}"
     echo -e "          Ex. sudo rbin.sh -f 0"
     echo -e "          Ex. sudo rbin.sh -f 1"
@@ -202,17 +199,11 @@ ShowHelp()
 
 SetFont()
 {
-    #Check For root
-    if [ $EUID -ne 0 ]; then
-        echo -e "${I_FAIL} ${C_FAIL}This command must run as root"
-        End
-    fi
-
-    #Init for font
-    if [ ! -f "/var/.rbinfont" ]; then
-        sudo echo $2 >> /var/.rbinfont
+    #Check if null
+    if [[ $ENABLE_FONT = "" ]]; then
+        echo "ENABLE_FONT=$2" >> $CONFIG_FILE
     else
-        sudo echo $2 > /var/.rbinfont
+        sed -i "s/\($CONF_K_FONT *= *\).*/\1$2/" $CONFIG_FILE
     fi
 
     if [ "$2" == "1" ]; then
@@ -221,7 +212,6 @@ SetFont()
         echo -e "${C_FAIL}Disable ${C_FILE}Font Awesome"
     fi
 }
-
 
 ListFile()
 {
@@ -512,51 +502,39 @@ DeleteFile()
     done
 }
 
-CheckFont
-CheckInit $1 $2 
 
 #==================== MAIN ========================#
 
-#Check if init or not (this will store user home at /var/.rbinrc)
-#Use for check rbin path
-#Cannot use $USER or $HOME becuase when run with root, it won't found
-if [ -f "/var/.rbinrc" ]; then
+CheckInit
 
-    ROOT="/home/$(cat /var/.rbinrc)/.local/.rbin"
 
-    #if no bin folder, make it
-    if [ ! -d $ROOT ]; then
-        mkdir $ROOT &> /dev/null
-    fi
-
-    #if no parameter, Show help
-    if [ "$1" == "" ] || [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--h" ] || [ "$1" == "--help" ]; then
-        ShowHelp
-    else
-        if [ "$1" == "-l" ] || [ "$1" == "-L" ]; then
-            ListFile $1
-        elif [ "$1" == "-r" ] || [ "$1" == "-restore" ]; then
-            RestoreFile $1 $2 $3
-        elif [ "$1" == "-c" ] || [ "$1" == "-clean" ]; then
-            CleanFile $1 $2
-        elif [ "$1" == "-d" ] || [ "$1" == "-delete" ]; then
-            DeleteFile $@
-        elif [ "$1" == "-s" ]; then
-            echo -e "${C_DIR}Total size is ${C_FILE}$(du -hs $ROOT | cut -f1)"
-        elif [ "$1" == "-f" ] || [ "$1" == "-font" ]; then
-            SetFont $1 $2
-        elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
-            echo "[recycle bin] version: " $VERSION
-        elif [ "$1" == "-u" ] || [ "$1" == "-user" ]; then
-            echo -e "${C_FILE}Current user is ${C_OK}"$(cat /var/.rbinrc)
-        else
-            RemoveFile $@
-        fi
-    fi
-else
-    echo "Please run: 'sudo rbin.sh init {USER}' first"
+#if no bin folder, make it
+if [ ! -d $ROOT ]; then
+    mkdir -p $ROOT &> /dev/null
 fi
 
+
+if [ "$1" == "" ] || [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--h" ] || [ "$1" == "--help" ]; then
+    ShowHelp
+elif [ "$1" == "-l" ] || [ "$1" == "-L" ]; then
+    ListFile $1
+elif [ "$1" == "-r" ] || [ "$1" == "-restore" ]; then
+    RestoreFile $1 $2 $3
+elif [ "$1" == "-c" ] || [ "$1" == "-clean" ]; then
+    CleanFile $1 $2
+elif [ "$1" == "-d" ] || [ "$1" == "-delete" ]; then
+    DeleteFile $@
+elif [ "$1" == "-s" ]; then
+    echo -e "${C_DIR}Total size is ${C_FILE}$(du -hs $ROOT | cut -f1)"
+elif [ "$1" == "-f" ] || [ "$1" == "-font" ]; then
+    SetFont $1 $2
+elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
+    echo "[recycle bin] version: " $VERSION
+elif [ "$1" == "-u" ] || [ "$1" == "-user" ]; then
+    echo -e "${C_FILE}Current user is ${C_OK}"$CURRENTUSER
+else
+    RemoveFile $@
+fi
 
 echo ""
 
