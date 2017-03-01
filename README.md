@@ -70,7 +70,7 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - pattern: ```rm -u```
   
 ##Manual Config
-*Config file will be ~/.config/rbin/.rbinrc
+*Config file will be ~/.config/rbin/.rbinrc*
 
 * Enable Font awesome (Terminal need support Unicode)
   - ```ENABLE_FONT=1``` to render with font awesome icon
