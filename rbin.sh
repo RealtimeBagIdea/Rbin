@@ -18,7 +18,7 @@
 #Light Gray   0;37     White         1;37
 #----------------------------------------
 
-VERSION="1.1"
+VERSION="1.2"
 
 #COLOR VAR
 C_DIR='\033[1;34m'
@@ -531,18 +531,20 @@ if [ -f "/var/.rbinrc" ]; then
     else
         if [ "$1" == "-l" ] || [ "$1" == "-L" ]; then
             ListFile $1
-        elif [ "$1" == "-r" ]; then
+        elif [ "$1" == "-r" ] || [ "$1" == "-restore" ]; then
             RestoreFile $1 $2 $3
-        elif [ "$1" == "-c" ]; then
+        elif [ "$1" == "-c" ] || [ "$1" == "-clean" ]; then
             CleanFile $1 $2
-        elif [ "$1" == "-d" ]; then
+        elif [ "$1" == "-d" ] || [ "$1" == "-delete" ]; then
             DeleteFile $@
         elif [ "$1" == "-s" ]; then
             echo -e "${C_DIR}Total size is ${C_FILE}$(du -hs $ROOT | cut -f1)"
-        elif [ "$1" == "-f" ]; then
+        elif [ "$1" == "-f" ] || [ "$1" == "-font" ]; then
             SetFont $1 $2
         elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
-            echo "[Recycle Bin] version: " $VERSION
+            echo "[recycle bin] version: " $version
+        elif [ "$1" == "-u" ] || [ "$1" == "-user" ]; then
+            echo -e "${C_FILE}Current user is ${C_OK}"$(cat /var/.rbinrc)
         else
             RemoveFile $@
         fi
