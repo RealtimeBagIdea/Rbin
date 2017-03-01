@@ -40,7 +40,7 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/list.png)
   
 * Restore file from recycle bin
-  - you csn see index by ```rm -l```
+  - you can see index by ```rm -l```
   - pattern: ```rm -r {Index} {TargetPath}```
   - ex1. ```rm -r 0,1,2 ~/foo``` restore files to ```~/foo```
   - ex2. ```rm -r . ~/foo``` restore all files to ```~/foo```
@@ -58,5 +58,5 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   
 * Enable / Disable FontAwesome (Terminal must support Unicode)
   - pattern: ```sudo rm -f {value 0 or 1}```
-  - ex1. ```sudo rm -f 0``` disable fontawesome
-  - ex2. ```sudo rm -f 1``` enable fontawesome
+  - ex1. ```sudo rm -f 0``` disable FontAwesome
+  - ex2. ```sudo rm -f 1``` enable FontAwesome
