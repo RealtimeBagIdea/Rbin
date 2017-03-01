@@ -62,3 +62,6 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - pattern: ```sudo rm -f {value 0 or 1}```
   - ex1. ```sudo rm -f 0``` disable FontAwesome
   - ex2. ```sudo rm -f 1``` enable FontAwesome
+
+* Show current user's bin
+  - pattern: ```rm -u```
