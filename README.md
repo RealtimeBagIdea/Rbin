@@ -15,7 +15,7 @@
 * re-open terminal
 
 ##Recommended
-* Download and Install FontAwesome for Icon
+* Download and Install [FontAwesome](https://github.com/FortAwesome/Font-Awesome) for Icon
 * if you want to replace ```rm``` with this, you can by follow this step
   - add ```alias sudo="sudo "``` to your .bashrc or your shell init
   - add ```alias rm="rbin.sh"``` to your .bashrc or your shell init
@@ -31,18 +31,18 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - pattern: ```rm {file1} {file2} {file3}```
   - ex1. ```rm file1.txt file2.txt``` remove by select manual
   - ex2. ```rm * .*``` remove all file and directory (include hidden file)
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/rm.png)
+  - ![Remove file to Bin](screenshot/rm.png)
 
 * Delete file from hardisk
   - pattern: ```rm -d {file1} {file2} {file3}```
   - ex1. ```rm -d file1.txt file2.txt``` delete by select manual
   - ex2. ```rm -d * .*``` delete all file and directory (include hidden file)
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/delete.png)
+  - ![Delete file from hardisk](screenshot/delete.png)
   
 * List file in recycle bin
   - pattern: ```rm -l``` list short of file
   - pattern: ```rm -L``` list file with time
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/list.png)
+  - ![List file in recycle bin](screenshot/list.png)
   
 * Restore file from recycle bin
   - you can see index by ```rm -l```
@@ -50,13 +50,13 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
   - ex1. ```rm -r 0,1,2 ~/foo``` restore files to ```~/foo```
   - ex2. ```rm -r . ~/foo``` restore all files to ```~/foo```
   - ex3. ```rm -r 0,1``` restore files to current directory
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/restore.png)
+  - ![Restore file from recycle bin](screenshot/restore.png)
   
 * Clean Bin (Delete file from bin)
   - pattern: ```rm -c {Index}```
   - ex1. ```rm -c 0,1,2``` delete manual files from bin
   - ex2. ```rm -c``` delete all files from bin
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/clean.png)
+  - ![Clean Bin (Delete file from bin)](screenshot/clean.png)
 
 * Get bin size
   - pattern: ```rm -s```
