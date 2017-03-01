@@ -24,8 +24,8 @@
 
 ##Usage 
 If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
-*No init require since version 2.0 or later*
-* ~~First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).~~
+
+* ~~First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).~~ No init require since version 2.0 or later
 
 * Remove file to Bin
   - pattern: ```rm {file1} {file2} {file3}```
