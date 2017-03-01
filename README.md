@@ -20,7 +20,7 @@
 
 ##Usage 
 If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
-* First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```). You can change user's bin by this command. This script support multi user.
+* First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).
   - ```sudo rm init realtime``` realtime is your username
   - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/init.png)
 
