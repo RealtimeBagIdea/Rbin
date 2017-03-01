@@ -1,9 +1,13 @@
 ##Recycle Bin for Linux (Terminal Mode) such as i3wm
 ##Update Log
-* v1.2
-  - use ```rm -u or rm -user``` to show current user's bin
-* v1.1
-  - Show Detail when disable/enable font awesome by run ```sudo rm -f {value}```
+| Version | Update Detail                                                                         |
+| :------:|:--------------------------------------------------------------------------------------|
+|   2.0   | - No Init require when first start                                                    | 
+|         |  - Change config file from /var/.rbinrc to ~/.local/rbin/.rbinrc                      | 
+|         | - Remove "init" argument                                                              | 
+|   1.2   | - Use ```rm -u or rm -user``` to show current user's bin                              |
+|   1.1   | - Show Detail when disable/enable font awesome by run ```sudo rm -f {value}```        | 
+
 
 ##Installation
 * move ```rbin.sh``` to ```/usr/bin```
@@ -20,9 +24,8 @@
 
 ##Usage 
 If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
-* First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).
-  - ```sudo rm init realtime``` realtime is your username
-  - ![alt img](https://raw.githubusercontent.com/RealtimeBagIdea/Rbin/master/screenshot/init.png)
+*No init require since version 2.0 or later*
+* ~~First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).~~
 
 * Remove file to Bin
   - pattern: ```rm {file1} {file2} {file3}```
@@ -65,3 +68,10 @@ If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend
 
 * Show current user's bin
   - pattern: ```rm -u```
+  
+##Manual Config
+*Config file will be ~/.config/rbin/.rbinrc
+
+* Enable Font awesome (Terminal need support Unicode)
+  - ```ENABLE_FONT=1``` to render with font awesome icon
+  - ```ENABLE_FONT=0``` to disable font awesome icon
