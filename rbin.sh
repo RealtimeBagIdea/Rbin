@@ -546,7 +546,7 @@ if [ -f "/var/.rbinrc" ]; then
         elif [ "$1" == "-f" ] || [ "$1" == "-font" ]; then
             SetFont $1 $2
         elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
-            echo "[recycle bin] version: " $version
+            echo "[recycle bin] version: " $VERSION
         elif [ "$1" == "-u" ] || [ "$1" == "-user" ]; then
             echo -e "${C_FILE}Current user is ${C_OK}"$(cat /var/.rbinrc)
         else
