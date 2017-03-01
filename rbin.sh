@@ -194,6 +194,10 @@ ShowHelp()
     echo -e "          Ex. rbin.sh -c 0,1,2"
     echo -e ""
     echo -e "        ${C_OK}Size: rbin.sh -s${C_NC}"
+    echo -e ""
+    echo -e "     ${C_OK}Version: rbin.sh -v${C_NC}"
+    echo -e ""
+    echo -e "${C_OK}Current User: rbin.sh -u${C_NC}"
 }
 
 SetFont()
