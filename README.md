@@ -1,7 +1,7 @@
 ##Recycle Bin for Linux (Terminal Mode) such as i3wm
 ##Update Log
 * v1.1
-  - Show Detail when disable/enable font awesome when run ```sudo rm -f {value}```
+  - Show Detail when disable/enable font awesome by run ```sudo rm -f {value}```
 
 ##Installation
 * move ```rbin.sh``` to ```/usr/bin```
