@@ -20,7 +20,7 @@
 * if you want to replace ```rm``` with this, you can by follow this step
   - add ```alias sudo="sudo "``` to your .bashrc or your shell init
   - add ```alias rm="rbin.sh"``` to your .bashrc or your shell init
-  - re-open terminal
+  - re-open terminal and Enjoy!
   - now you can call this script by use ```rm``` command
 
 ##Usage 
