@@ -33,8 +33,10 @@
 #-------+---------------------------------------------------------------------------------------------------#
 #  2.1  | - Change config file from "~/.local/rbin/.rbinrc" to "~/.local/rbin/config"                       |
 #-------+---------------------------------------------------------------------------------------------------#
+#  2.2  | - Add Details to help (-h)                                                                        |
+#-------+---------------------------------------------------------------------------------------------------#
 
-VERSION="2.0"
+VERSION="2.2"
 
 
 #COLOR VAR
@@ -65,8 +67,6 @@ End()
     echo ""
     exit 1
 }
-
-End
 
 CheckInit()
 {
@@ -111,6 +111,7 @@ CheckInit()
     fi
 }
 
+#Method to Check if array exist
 ArrayExist() {
     local seeking=$1; shift
     local in=1
@@ -174,32 +175,43 @@ GetAllFile()
 
 ShowHelp()
 {
+    echo -e " ${C_DIR}Render font with FontAwesome or with Normal Text${C_NC}"
     echo -e " ${C_OK}Enable Font: sudo rbin.sh -f {VALUE}${C_NC}"
     echo -e "          Ex. sudo rbin.sh -f 0"
     echo -e "          Ex. sudo rbin.sh -f 1"
     echo -e ""
+    echo -e " ${C_DIR}Show all file in Recycle bin${C_NC}"
     echo -e " ${C_OK}List(Short): rbin.sh -L${C_NC}"
+    echo -e ""
+    echo -e " ${C_DIR}Show all file in Recycle bin with Date and Time${C_NC}"
     echo -e " ${C_OK}List (Long): rbin.sh -l${C_NC}"
     echo -e ""
+    echo -e " ${C_DIR}Remove file to Recycle bin${C_NC}"
     echo -e "      ${C_OK}Remove: rbin.sh {FILE}${C_NC}"
     echo -e "          Ex. rbin.sh file1.txt file2.txt file3.txt"
     echo -e "          Ex. rbin.sh *"
     echo -e ""
-    echo -e "     ${C_OK}Restore: rbin.sh -r {INDEX} {TARGET}"
+    echo -e " ${C_DIR}Restore file from Recycle bin to path${C_NC}"
+    echo -e "     ${C_OK}Restore: rbin.sh -r {INDEX} {TARGET}${C_NC}"
     echo -e "          Ex. rbin.sh -r 0,1,2 ~/bar"
     echo -e "          Ex. rbin.sh -r . ~/bar"
     echo -e ""
+    echo -e " ${C_DIR}Delete file from path${C_NC}"
     echo -e "      ${C_OK}Delete: rbin.sh -d {FILE}${C_NC}"
     echo -e "          Ex. rbin.sh -d file1.txt file2.txt"
     echo -e "          Ex. rbin.sh -d *"
     echo -e ""
+    echo -e " ${C_DIR}Delete file from Recycle bin${C_NC}"
     echo -e "       ${C_OK}Clean: rbin.sh -c {INDEX}${C_NC}"
     echo -e "          Ex. rbin.sh -c 0,1,2"
     echo -e ""
+    echo -e " ${C_DIR}Show Recycle bin's size${C_NC}"
     echo -e "        ${C_OK}Size: rbin.sh -s${C_NC}"
     echo -e ""
+    echo -e " ${C_DIR}Show current version${C_NC}"
     echo -e "     ${C_OK}Version: rbin.sh -v${C_NC}"
     echo -e ""
+    echo -e " ${C_DIR}Show current user${C_NC}"
     echo -e "${C_OK}Current User: rbin.sh -u${C_NC}"
 }
 
@@ -535,7 +547,7 @@ elif [ "$1" == "-s" ]; then
 elif [ "$1" == "-f" ] || [ "$1" == "-font" ]; then
     SetFont $1 $2
 elif [ "$1" == "-v" ] || [ "$1" == "-version" ]; then
-    echo "[recycle bin] version: " $VERSION
+    echo "[RBin] version: " $VERSION
 elif [ "$1" == "-u" ] || [ "$1" == "-user" ]; then
     echo -e "${C_FILE}Current user is ${C_OK}"$CURRENTUSER
 else
