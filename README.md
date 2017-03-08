@@ -2,6 +2,7 @@
 ##Update Log
 | Version | Update Detail                                                                         |
 | :------:|:--------------------------------------------------------------------------------------|
+|   2.2   | - Add Details to Help (-h)                                                            |
 |   2.1   | - Change config file from "~/.local/rbin/.rbinrc" to "~/.local/rbin/config            | 
 |   2.0   | - No Init require when first start                                                    | 
 |         |  - Change config file from /var/.rbinrc to ~/.local/rbin/.rbinrc                      | 
