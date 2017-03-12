@@ -35,8 +35,10 @@
 #-------+---------------------------------------------------------------------------------------------------#
 #  2.2  | - Add Details to help (-h)                                                                        |
 #-------+---------------------------------------------------------------------------------------------------#
+#  2.3  | - Fixed color bug. when delete failed (rm -c)                                                                        |
+#-------+---------------------------------------------------------------------------------------------------#
 
-VERSION="2.2"
+VERSION="2.3"
 
 
 #COLOR VAR
@@ -431,7 +433,7 @@ CleanFile()
                 if [ $? -eq 0 ]; then
                     echo -e "${I_OK} ${C_OK}Delete: $(basename ${ITEM_LIST[$i]})" 
                 else
-                    echo -e "${I_FAIL} ${C_OK}Delete: $(basename ${ITEM_LIST[$i]})" 
+                    echo -e "${I_FAIL} ${C_FAIL}Delete: $(basename ${ITEM_LIST[$i]})" 
                 fi
             else
                 echo -e "${I_FAIL} index ${C_FAIL}$i out of length"
