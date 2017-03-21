@@ -1,5 +1,5 @@
-##Recycle Bin for Linux (Terminal Mode) such as i3wm
-##Update Log
+##Recycle Bin for Linux (Terminal Mode) such as i3wm##
+##Update Log##
 
 | Version | Update Detail                                                                         |
 | :------:|:--------------------------------------------------------------------------------------|
