@@ -1,5 +1,6 @@
 ##Recycle Bin for Linux (Terminal Mode) such as i3wm
 ##Update Log
+
 | Version | Update Detail                                                                         |
 | :------:|:--------------------------------------------------------------------------------------|
 |   2.3   | - Fixed color bug when delete failed (rm -c)                                          |
