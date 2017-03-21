@@ -1,5 +1,5 @@
-##Recycle Bin for Linux (Terminal Mode) such as i3wm##
-##Update Log##
+**Recycle Bin for Linux (Terminal Mode) such as i3wm**
+**Update Log**
 
 | Version | Update Detail                                                                         |
 | :------:|:--------------------------------------------------------------------------------------|
@@ -13,12 +13,12 @@
 |   1.1   | - Show Detail when disable/enable font awesome by run ```sudo rm -f {value}```        | 
 
 
-##Installation
+**Installation**
 * move ```rbin.sh``` to ```/usr/bin```
 * run command ``` sudo chmod 777 /usr/bin/rbin.sh ```
 * re-open terminal
 
-##Recommended
+**Recommended**
 * Download and Install [FontAwesome](https://github.com/FortAwesome/Font-Awesome) for Icon
 * if you want to replace ```rm``` with this, you can by follow this step
   - add ```alias sudo="sudo "``` to your .bashrc or your shell init
@@ -26,7 +26,7 @@
   - re-open terminal and Enjoy!
   - now you can call this script by use ```rm``` command
 
-##Usage 
+**Usage**
 If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
 
 * ~~First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).~~ No init require since version 2.0 or later
