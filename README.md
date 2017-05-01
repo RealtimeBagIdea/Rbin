@@ -27,7 +27,7 @@
   - now you can call this script by use ```rm``` command
 
 **Usage**
-If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instend of ```rbin.sh```. If not, you must use ```rbin.sh``` instend
+If you add ```alias rm="rbin.sh"``` to your .bashrc you can use ```rm``` instead of ```rbin.sh```. If not, you must use ```rbin.sh``` instead
 
 * ~~First Step you need to init your user (temporary bin will be ```/home/{user}/.local/.rbin/```).~~ No init require since version 2.0 or later
 
